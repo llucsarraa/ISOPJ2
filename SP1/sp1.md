@@ -196,6 +196,196 @@ En aquest apartat, definirem manualment l'adreça IP, la màscara de subxarxa, l
 
 <img width="738" height="635" alt="image" src="https://github.com/user-attachments/assets/09887665-f9c0-451c-85d4-eda6965704b4" />
 
+## Pas 28 – Anàlisi comparativa: CMD vs. PowerShell
+
+### Fonaments de l'ecosistema d'arrencada
+Dins del procés d'inici del sistema, cal destacar dos components essencials que hem analitzat anteriorment:
+
+* **BCD (Boot Configuration Data):** És la base de dades on s'emmagatzema la configuració d'arrencada. Actua com l'evolució moderna de l'antic fitxer `boot.ini`.
+* **El Kernel:** Es tracta del nucli del sistema (`ntoskrnl.exe`). El *Boot Loader* s'encarrega d'extreure'l del disc i carregar-lo a la memòria RAM juntament amb els controladors vitals.
+
+### Diferències clau entre intèrprets d'ordres
+Aquesta taula resumeix les discrepàncies principals entre la consola clàssica i l'entorn avançat de Microsoft:
+
+| Atribut | Símbol del sistema (CMD) | Windows PowerShell |
+| :--- | :--- | :--- |
+| **Format de dades** | Basat exclusivament en **text pla**. | Treballa amb **objectes** (.NET). |
+| **Tipologia d'ordres** | Comandes heretades d'MS-DOS (`dir`, `cd`). | Ús de **Cmdlets** (*Verb-Nom*, p. ex. `Get-Service`). |
+| **Finalitat** | Consultes ràpides i execució simple. | **Automatització** complexa i creació d'scripts. |
+
+---
+
+## Pas 29 – Comprovació de comandes essencials
+
+### Llistat de fitxers i directoris: `dir`
+> L'execució d'aquesta comanda permet visualitzar el contingut del directori actual, mostrant tant els arxius com les carpetes disponibles.
+
+<img width="835" height="514" alt="image" src="https://github.com/user-attachments/assets/fd0a1e78-77c2-4d82-a276-296b0587b0de" />
+
+### cd → moure's per carpetes
+
+<img width="523" height="154" alt="image" src="https://github.com/user-attachments/assets/cca6d7ba-9294-4d18-ab1c-ad0b9ad3fdba" />
+
+### mkdir prova → crear carpeta
+
+<img width="431" height="138" alt="image" src="https://github.com/user-attachments/assets/abb66a0d-9363-4606-86f0-bbdd990536a8" />
+
+### echo hola > fitxer.txt → crear fitxer
+
+<img width="389" height="196" alt="image" src="https://github.com/user-attachments/assets/0995670f-48b9-455c-9efa-031bf91258df" />
+
+### del fitxer.txt → eliminar fitxer
+
+<img width="419" height="237" alt="image" src="https://github.com/user-attachments/assets/f5e1cfc6-cb44-4ce3-be84-0753bc9ca5c9" />
+
+## Pas 30 – Utilitats de monitoratge i gestió del sistema
+
+### `tasklist` ➔ Visualització de processos en execució
+> Aquesta instrucció genera un llistat detallat de totes les aplicacions i serveis que s'estan executant actualment en la memòria del sistema, incloent el seu identificador de procés (PID) i l'ús de memòria.
+
+<img width="695" height="641" alt="image" src="https://github.com/user-attachments/assets/22ff97ff-9a17-4a75-ab17-04097571ecfe" />
+
+### taskkill /IM notepad.exe /F → tancar un procés
+
+<img width="483" height="66" alt="image" src="https://github.com/user-attachments/assets/05048dc1-3293-4e96-89ee-2ecdb6c758b9" />
+
+<img width="515" height="46" alt="image" src="https://github.com/user-attachments/assets/3f960cb2-f786-4757-9b0d-f3da32022ba1" />
+
+### `systeminfo` ➔ Informe detallat de la configuració del sistema
+> Proporciona una anàlisi exhaustiva de l'equip, incloent la versió exacta del sistema operatiu, la ID del producte, el temps que fa que l'ordinador està encès, la configuració del processador i l'estat de la memòria física.
+
+<img width="916" height="723" alt="image" src="https://github.com/user-attachments/assets/ce92a865-b050-43af-853b-3729d009b506" />
+
+### hostname → nom de l'equip
+
+<img width="338" height="49" alt="image" src="https://github.com/user-attachments/assets/b0e447b6-173d-4001-8674-0285e9ab946c" />
+
+### whoami → usuari actual
+
+<img width="328" height="49" alt="image" src="https://github.com/user-attachments/assets/9688b2e3-4d28-4ad7-99d6-3ffd2b24b79d" />
+
+## Pas 31 – Diagnòstic i utilitats de xarxa
+
+### `ipconfig` ➔ Consulta dels paràmetres de xarxa
+> Permet verificar de forma ràpida l'assignació d'adreces IP, la màscara de subxarxa i la porta d'enllaç predeterminada per a cada un dels adaptadors de xarxa actius (Ethernet, Wi-Fi o virtuals).
+
+<img width="682" height="287" alt="image" src="https://github.com/user-attachments/assets/ca864f94-edcb-4162-ae0d-b1337debd7e3" />
+
+### ping google.com → comprovar connexió
+
+<img width="570" height="254" alt="image" src="https://github.com/user-attachments/assets/5da2de28-3610-4bce-a14d-812b9cb44184" />
+
+### netstat -an → connexions obertes
+
+<img width="648" height="722" alt="image" src="https://github.com/user-attachments/assets/660d7576-eecf-444f-ac40-8cf9a27ebec4" />
+
+## Pas 32 – Exploració d'utilitats avançades
+
+### `tree` ➔ Representació gràfica de l'arbre de directoris
+> Aquesta comanda genera un esquema visual i jeràrquic de l'estructura de carpetes a partir de la ruta indicada, facilitant la comprensió de l'organització del sistema de fitxers de forma ràpida.
+
+<img width="396" height="102" alt="image" src="https://github.com/user-attachments/assets/fbfb2659-cbc8-4a75-8d7e-4c7403994427" />
+
+### cls → netejar pantalla
+
+<img width="390" height="97" alt="image" src="https://github.com/user-attachments/assets/0aa5e42c-c099-4088-91de-7e03c8535a78" />
+
+<img width="256" height="45" alt="image" src="https://github.com/user-attachments/assets/c7a44bf2-a03e-468f-a817-bd0a5e057ba9" />
+
+### `help` ➔ Accés al manual d'instruccions de la consola
+> Proporciona una llista detallada de totes les comandes disponibles al sistema amb una breu descripció de la seva utilitat. A més, si s'utilitza seguit del nom d'una comanda específica (p. ex., `help dir`), mostra la sintaxi exacta i tots els paràmetres configurables.
+
+<img width="842" height="724" alt="image" src="https://github.com/user-attachments/assets/777748d5-c720-4e27-b2b6-6044ca220fca" />
+
+### `shutdown /s /t 0` ➔ Ordre de finalització del sistema
+> Aquesta instrucció força l'apagat immediat de l'ordinador. L'ús dels paràmetres és el següent:
+> * **/s**: Indica l'acció d'apagar (*shutdown*).
+> * **/t 0**: Estableix el temps d'espera en zero segons, executant l'ordre a l'instant.
+
+<img width="351" height="26" alt="image" src="https://github.com/user-attachments/assets/db5813d9-fefe-4808-b22c-5756da0121ff" />
+
+<img width="228" height="199" alt="image" src="https://github.com/user-attachments/assets/d48d4a90-df14-41a8-ab7f-5e8a0ccde2ff" />
+
+## Pas 33 – Resum d'utilitat de les eines de diagnòstic
+
+En finalitzar l'execució de les ordres anteriors, n'extraiem les següents conclusions sobre la seva funcionalitat:
+
+* **Monitoratge de processos (`tasklist`):** Permet auditar en temps real quins programes i serveis consumeixen recursos, sent vital per detectar aplicacions bloquejades o processos en segon pla.
+* **Configuració de xarxa (`ipconfig`):** És l'eina de referència per verificar la connectivitat local, confirmant que l'equip té una identitat (IP) i una ruta de sortida (Gateway) correctament assignades.
+* **Inventari del sistema (`systeminfo`):** Ofereix una radiografia completa de la màquina, des de les especificacions del maquinari fins a l'estat actual del programari i el temps que fa que l'equip està operatiu.
+
+---
+
+# Fase 7 – Gestió i instal·lació d'aplicacions
+
+## Pas 34 – Adquisició de programari mitjançant el navegador
+> Procediment per localitzar i descarregar fitxers instal·ladors (com ara **Google Chrome** o **Visual Studio Code**) des dels seus llocs web oficials per a la seva posterior implementació al sistema.
+
+<img width="1026" height="769" alt="image" src="https://github.com/user-attachments/assets/7d847722-8951-44c7-bcae-ebab42add45b" />
+
+## Pas 35 – Execució de l'assistent d'instal·lació
+> Un cop descarregat l'executable (generalment un fitxer `.exe` o `.msi`), procedim a la seva implementació al sistema seguint les etapes del programari d'instal·lació:
+
+* **Execució inicial:** Doble clic sobre el fitxer per obrir l'assistent.
+* **Gestió de permisos:** Acceptació del Control de Comptes d'Usuari (UAC) per permetre canvis al sistema.
+* **Configuració de l'assistent:** Lectura i acceptació dels termes de la llicència, selecció de la ruta de destí i configuració d'accessos directes.
+* **Finalització:** Tancament de l'instal·lador i verificació que l'aplicació s'ha afegit correctament al menú d'Inici.
+
+<img width="656" height="312" alt="image" src="https://github.com/user-attachments/assets/2e759190-7fcd-422c-a5c0-478550bd8708" />
+
+<img width="1022" height="721" alt="image" src="https://github.com/user-attachments/assets/8322abe7-3a24-4a08-9d0c-f96619a05a76" />
+
+## Pas 36 – Verificació i validació operativa del programari
+> L'última etapa consisteix a confirmar que el desplegament ha estat satisfactori i que l'aplicació és totalment funcional:
+
+* **Llançament de l'aplicació:** Execució del programa des de l'accés directe de l'escriptori o mitjançant el cercador del menú d'Inici.
+* **Test de funcionalitat:** Comprovació que la interfície carrega correctament i que les eines bàsiques de l'aplicació (ex: navegació a Chrome o obertura de fitxers a VS Code) responen sense errors.
+* **Confirmació de persistència:** Verificació que el programa apareix correctament llistat dins del panell de "Configuració" > "Aplicacions instal·lades".
+
+<img width="1023" height="771" alt="image" src="https://github.com/user-attachments/assets/0bebdcdf-5a05-460e-a911-34ca768259ec" />
+
+## Pas 37 – Implementació de programari via Microsoft Store
+> Aquest mètode ofereix un entorn centralitzat i segur per a la instal·lació d'aplicacions, garantint que el programari ha estat verificat per Microsoft i facilitant-ne les actualitzacions automàtiques:
+
+* **Accés a la plataforma:** Obertura de la botiga oficial des de la barra de tasques o el menú d'Inici.
+* **Cerca i selecció:** Ús del cercador integrat per localitzar l'aplicació desitjada (ex: WhatsApp, Spotify o iTunes).
+* **Adquisició simplificada:** En prémer el botó "Obté" o "Instal·la", el sistema gestiona automàticament la descàrrega i la configuració sense necessitat d'intervenció manual de l'usuari ni assistents externs.
+* **Integració amb el compte:** L'aplicació queda vinculada al compte de Microsoft, facilitant la seva reinstal·lació en altres dispositius de l'usuari.
+
+<img width="801" height="635" alt="image" src="https://github.com/user-attachments/assets/891c189e-1595-40cd-8806-13084dbcb95f" />
+
+<img width="800" height="633" alt="image" src="https://github.com/user-attachments/assets/55259287-db9d-4ead-89ec-8dca10651456" />
+
+## Pas 38 – Test de funcionalitat de la Microsoft Store
+
+<img width="608" height="453" alt="image" src="https://github.com/user-attachments/assets/401ae1fa-ec7f-4763-93dc-3cafdfa513e1" />
+
+## Pas 39 – Eliminació de programari del sistema
+> Per mantenir la higiene del sistema operatiu i alliberar espai a l'emmagatzematge, procedim a la desinstal·lació controlada d'una aplicació mitjançant la interfície de configuració de Windows:
+
+* **Accés al panell de control modern:** Naveguem a **Configuració** ➔ **Aplicacions** ➔ **Aplicacions instal·lades**.
+* **Selecció del programari:** Localitzem l'aplicació que volem eliminar dins del llistat alfabètic.
+* **Execució de la desinstal·lació:** Cliquem sobre la icona dels tres punts (o el botó corresponent) i seleccionem l'opció **Desinstal·lar**.
+* **Confirmació i neteja:** Seguim els passos de l'assistent de desinstal·lació per assegurar-nos que s'eliminen els fitxers executables, les configuracions i les entrades del registre associades.
+
+<img width="797" height="460" alt="image" src="https://github.com/user-attachments/assets/d81d7408-dd31-4813-a8b3-9b904b66fd6a" />
+
+<img width="1029" height="771" alt="image" src="https://github.com/user-attachments/assets/df03cff8-1283-4072-a114-78f7ad3b9dc9" />
+
+<img width="550" height="108" alt="image" src="https://github.com/user-attachments/assets/975c0ee9-addb-4a44-be44-8d8f26ee0b90" />
+
+<img width="450" height="198" alt="image" src="https://github.com/user-attachments/assets/44ccf629-6fd4-4b48-81b1-ea5283086b3d" />
+
+<img width="1027" height="712" alt="image" src="https://github.com/user-attachments/assets/39db81af-9ad4-4878-8fb5-ec6df2850e3c" />
+
+## Pas 40 – Verificació de l'eliminació definitiva
+> Un cop finalitzat el procés de desinstal·lació, és imprescindible confirmar que el programari s'ha suprimit correctament de tots els punts d'accés del sistema:
+
+* **Cerca al Menú d'Inici:** Utilitzem el cercador de Windows per comprovar que l'aplicació ja no apareix com a programa instal·lat.
+* **Inspecció del Directori d'Arxius:** Verificació visual a les carpetes `C:\Program Files` o `C:\Program Files (x86)` per assegurar-nos que la carpeta del programa ha estat eliminada.
+* **Auditoria des de la Consola:** Opcionalment, podem executar la comanda `dir` des de CMD en la ruta d'instal·lació per confirmar que no queden fitxers residuals.
+* **Confirmació al llistat de configuració:** Tornar a "Aplicacions instal·lades" per verificar que l'entrada del programa ja no figura a la llista oficial.
+
 
 
 
