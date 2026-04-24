@@ -386,9 +386,6 @@ En finalitzar l'execució de les ordres anteriors, n'extraiem les següents conc
 * **Auditoria des de la Consola:** Opcionalment, podem executar la comanda `dir` des de CMD en la ruta d'instal·lació per confirmar que no queden fitxers residuals.
 * **Confirmació al llistat de configuració:** Tornar a "Aplicacions instal·lades" per verificar que l'entrada del programa ja no figura a la llista oficial.
 
+<img width="1025" height="773" alt="image" src="https://github.com/user-attachments/assets/afca9a39-3889-4d3f-9208-c8f1a5fb336c" />
 
-
-
-
-
-
+<img width="762" height="646" alt="image" src="https://github.com/user-attachments/assets/ec46445d-68a2-4827-a8df-34cb1c345dd6" />
