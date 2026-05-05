@@ -208,29 +208,142 @@ Per analitzar quines tasques s'estan executant en segon pla, procedirem a fer un
     `tasklist > C:\Users\%USERNAME%\processos_inici.txt`
 4.  **Anàlisi de resultats:** Identificarem elements essencials de l'entorn de Windows, com ara l'explorador de fitxers (`explorer.exe`), el servei d'indexació (`SearchIndexer.exe`) o el client d'emmagatzematge al núvol (`OneDrive.exe`).
 
+<img width="769" height="675" alt="image" src="https://github.com/user-attachments/assets/febe99d9-c54b-47ba-bb0e-f22552c0df02" />
 
+<img width="664" height="90" alt="image" src="https://github.com/user-attachments/assets/3882fed0-9ef9-48ec-971c-acb3c032a9c6" />
 
+<img width="259" height="510" alt="image" src="https://github.com/user-attachments/assets/cfc7fe42-4f24-442c-a010-7781986bcdde" />
 
+<img width="755" height="199" alt="image" src="https://github.com/user-attachments/assets/5daad51c-242c-4e26-ac7d-7b0fb4d52d10" />
 
+## 5.2. Diagnòstic i selecció de processos no crítics
 
+L'objectiu d'aquest punt és detectar aquelles tasques que consumeixen recursos sense ser vitals per al funcionament bàsic del sistema (com ara `OneDrive.exe`, `Teams.exe` o `SkypeApp.exe`). 
 
+Per organitzar aquesta informació, s'ha de confeccionar una comparativa tècnica detallada:
 
+| Identificador de la tasca | Consum de memòria (RAM) | Motiu de la seva desactivació |
+| :--- | :--- | :--- |
+| *Nom del procés* | *KB / MB utilitzats* | *Argument tècnic per prescindir-ne* |
 
+Aquesta anàlisi ens permetrà optimitzar el rendiment de la màquina virtual eliminant càrrega de treball innecessària.
 
+<img width="704" height="104" alt="image" src="https://github.com/user-attachments/assets/c9f3ad3b-b3f4-494a-ab60-8ef18fd39aed" />
 
+| Nom del procés | Memòria usada | Justificació per eliminar-lo |
+| :--- | :--- | :--- |
+| OneDrive.exe | 137.412 KB | Aturar la sincronització d'arxius en segon pla per estalviar amplada de banda d'internet, reduir l'ús de CPU/Disc o alliberar memòria RAM. |
 
+## 5.3. Finalització forçada de tasques i validació de resultats
 
+En aquest apartat, procedirem a tancar manualment els serveis identificats prèviament com a secundaris per alliberar càrrega del sistema. El procediment a seguir és:
 
+1. **Aturada del procés:** Des de la línia de comandes, s'utilitzarà la instrucció `taskkill` amb els paràmetres d'imatge (`/IM`) i forçat (`/F`). Per exemple:
+   `taskkill /IM OneDrive.exe /F`
 
+2. **Auditoria de l'acció:** Cal executar novament la comanda `tasklist` per corroborar que el procés ha estat efectivament expulsat de la memòria activa.
 
+> **Nota de documentació:** Per demostrar l'èxit de l'operació, és necessari incloure evidències gràfiques (captures de pantalla) que mostrin l'estat del llistat de tasques abans i després de l'execució de l'ordre.
 
+<img width="730" height="46" alt="image" src="https://github.com/user-attachments/assets/f79e5b66-c6db-4f24-95b3-63ee4bae386e" />
 
+<img width="573" height="125" alt="image" src="https://github.com/user-attachments/assets/db5eaf9c-1cd0-43a4-8628-f318aebe476d" />
 
+<img width="600" height="93" alt="image" src="https://github.com/user-attachments/assets/92223b68-5a94-4259-acba-4235fa45d76e" />
 
+<img width="467" height="38" alt="image" src="https://github.com/user-attachments/assets/7b2f0154-0f8c-4801-8c8f-4c3b831fafcf" />
 
+# Etapa 5: Anàlisi de resultats i optimització del rendiment
 
+## 5.5. Reflexió sobre la gestió de processos
 
+Després d'executar les tasques de l'inventari (`processos_inici.txt`) i d'haver realitzat la neteja de serveis prescindibles com `OneDrive.exe` o `Discord.exe`, cal entendre l'impacte de les nostres accions sobre el nucli del sistema.
 
+### L'impacte de finalitzar l'explorador (`explorer.exe`)
+Tot i que pugui semblar una acció crítica, l'aturada del procés `explorer.exe` només afecta la capa d'interfície d'usuari:
+
+* **Simptomatologia:** Desapareixen visualment la barra de tasques, el menú d'inici i les icones. El sistema sembla "buit", però segueix operatiu.
+* **Resiliència:** Les aplicacions obertes continuen funcionant. Es pot recuperar l'entorn fàcilment des del **Gestor de Tasques** (`Ctrl+Shift+Esc`) executant una "Nova tasca" amb el nom del procés.
+* **Seguretat:** A diferència dels processos del kernel (`csrss.exe` o `wininit.exe`), que provocarien un error de sistema crític (BSOD), el tancament de l'explorador és una prova segura i reversible.
+
+### Beneficis de l'optimització proactiva
+L'administració de processos, especialment mitjançant l'automatització configurada al **Pas 22**, aporta avantatges directes:
+
+1.  **Eficiència de memòria:** Alliberar RAM és vital en màquines virtuals amb recursos ajustats.
+2.  **Alliberament de CPU i I/O:** Evitem que serveis de sincronització o indexació consumeixin cicles de processador i operacions de lectura/escriptura constants al disc.
+3.  **Agilitat operativa:** Reduïm el temps d'espera des que l'usuari inicia sessió fins que el sistema és realment productiu.
+
+---
+
+# Etapa 6: Seguretat i control d'accés (ACLs)
+
+## 6.1. Fonaments de les Llistes de Control d'Accés
+
+A Windows, la seguretat dels fitxers descansa sobre el sistema **NTFS** i les seves **ACL** (*Access Control Lists*). Aquestes llistes permeten definir amb precisió qui té dret a interactuar amb cada recurs.
+
+### Conceptes clau del model de seguretat
+Per gestionar correctament els permisos, cal diferenciar els següents elements:
+
+| Concepte | Descripció |
+| :--- | :--- |
+| **DACL** | Llista que determina quins usuaris tenen accés i amb quins permisos. |
+| **SACL** | Llista dedicada a l'auditoria (registra qui ha intentat accedir a un fitxer). |
+| **ACE** | Cada entrada individual d'una ACL que vincula un usuari amb una acció (Permetre/Denegar). |
+
+### Nivells de granularitat i herència
+Windows ofereix una jerarquia de permisos que facilita l'administració a gran escala:
+
+* **Permisos Estàndard:** Els rols comuns com Lectura (R), Modificació (M) o Control Total (F).
+* **Permisos Avançats:** Un conjunt de 14 permisos detallats (com "Prendre possessió" o "Travessar carpetes").
+* **L'Herència:** Els objectes fills adopten per defecte les regles del directori pare, tot i que aquesta propietat es pot tallar per crear excepcions específiques.
+
+### Ordre de prioritats (Lògica de Windows)
+És fonamental recordar que Windows avalua les regles seguint un ordre jeràrquic estricte:
+
+> **Denegar (Deny) > Permetre (Allow)**
+
+Una denegació explícita sempre s'imposarà a qualsevol permís heretat o de grup. Si no hi ha cap regla que autoritzi l'accés, el sistema el bloqueja per defecte.
+
+## 6.2. Eines de gestió de permisos
+
+Depenent de l'entorn (gràfic o línia de comandes), utilitzarem diferents eines:
+
+* **Interfície Gràfica:** Pestanya "Seguretat" i opcions "Avançades" dins de les Propietats de la carpeta.
+* **Consola (CMD):** L'ordre `icacls` és l'estàndard modern per consultar i modificar permisos de forma massiva.
+* **PowerShell:** Comandes `Get-Acl` i `Set-Acl` per a scripts complexos.
+
+> [!IMPORTANT]
+> **Nota Final:** Prioritzarem sempre les **ACLs** sobre els permisos de compartició, ja que les primeres protegeixen el recurs tant si s'hi accedeix de forma local com remota.
+
+### Pas 24. Implementació del directori de treball
+
+Per iniciar la configuració dels controls d'accés, cal establir l'estructura de fitxers des d'un compte amb privilegis elevats:
+
+1.  **Accés de gestió:** Iniciem sessió al sistema amb el rol d'**Administrador**.
+2.  **Creació del recurs:** Generem una nova carpeta anomenada `Projectes` directament a l'arrel de la unitat **D:**.
+
+Aquest directori servirà com a laboratori per a les proves de permisos granulars i herència que realitzarem a continuació.
+
+<img width="406" height="177" alt="image" src="https://github.com/user-attachments/assets/fb4fb14a-4e23-4b00-a340-a39e08d5ab83" />
+
+### Pas 25. Configuració de privilegis del grup i ruptura d'herència
+
+Per garantir que només els usuaris autoritzats puguin gestionar el contingut de `D:\Projectes`, procedirem a restringir l'accés i definir permisos explícits:
+
+1.  **Gestió de seguretat:** Accedim a les propietats de la carpeta `Projectes` i ens situem a la pestanya **Seguretat**.
+2.  **Ruptura de l'herència:** Dins de les "Opcions avançades", desactivarem l'herència de permisos. Seleccionarem l'opció de **convertir/conservar els permisos existents** per mantenir el control manual sobre el recurs.
+3.  **Purga d'accessos genèrics:** Eliminarem qualsevol entrada d'usuaris genèrics com `Users` o `Everyone` (Tothom) per evitar accessos no desitjats.
+4.  **Assignació de control:** Afegirem el grup **Limitats** a la llista i li concedirem el nivell de **Control total**. 
+
+Finalment, aplicarem els canvis per assegurar que aquestes regles es propaguin correctament a tot el directori.
+
+<img width="370" height="486" alt="image" src="https://github.com/user-attachments/assets/3f1d657e-1ef1-45db-9120-9ec69d07a2d2" />
+
+<img width="776" height="521" alt="image" src="https://github.com/user-attachments/assets/052d0e12-d968-42dd-a2e2-eca59a73eda1" />
+
+<img width="715" height="383" alt="image" src="https://github.com/user-attachments/assets/52aca178-fc06-49ef-8189-74788bdc3c77" />
+
+<img width="596" height="125" alt="image" src="https://github.com/user-attachments/assets/7d6f6776-eb38-486d-81e6-4a51a979a724" />
 
 
 
