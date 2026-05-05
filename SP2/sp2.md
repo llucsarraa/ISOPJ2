@@ -104,23 +104,57 @@ Aquesta acció ens permetrà validar posteriorment que les quotes de disc s'apli
 
 <img width="651" height="633" alt="image" src="https://github.com/user-attachments/assets/1c48453b-1299-4726-9311-ab6f1f49dd49" />
 
+<img width="793" height="554" alt="image" src="https://github.com/user-attachments/assets/a3caa9fb-dbda-4e2c-8d3f-c8f5124e3c8e" />
 
+<img width="543" height="312" alt="image" src="https://github.com/user-attachments/assets/f4c9614f-8055-47ca-b660-96868c7fa685" />
 
+Pas 9. Provar la còpia de fitxers dins Dades per veure com actuen les quotes (superar límit)
+S'inicia sessió com alumne1 i es copien fitxers grans a D:. Quan s'arriba als 300 MB, Windows bloqueja la còpia i mostra un error d'espai insuficient, demostrant que les quotes funcionen correctament.
 
+<img width="1025" height="755" alt="image" src="https://github.com/user-attachments/assets/70adb627-f4d3-4c39-b35c-51b0cbc8b94f" />
 
+<img width="608" height="369" alt="image" src="https://github.com/user-attachments/assets/60be5025-168d-4747-8d2e-e8b0b15f1eb9" />
 
+<img width="250" height="73" alt="image" src="https://github.com/user-attachments/assets/09201c42-93e8-4b23-8cea-234ccad735f3" />
 
+<img width="197" height="97" alt="image" src="https://github.com/user-attachments/assets/f0bfc697-7f19-44b5-923e-ed5939bdcb58" />
 
+# Etapa 3: Automatització i gestió de rèpliques
 
+## 3.1. Integració d'una unitat de salvaguarda (Backups)
 
+Per tal de preparar l'entorn per a les tasques d'automatització, cal afegir un nou suport d'emmagatzematge seguint aquests passos:
 
+1.  **Configuració de l'hipervisor:** Des de la interfície de **VirtualBox**, s'annexa un tercer disc virtual a la màquina existent.
+2.  **Preparació del volum:** Un cop dins del sistema operatiu Windows, es procedeix a la inicialització de la unitat.
+3.  **Sistema de fitxers:** Es defineix el format **NTFS** per a aquest disc i se li assigna el nom descriptiu **"Backups"** per identificar-lo fàcilment com a destí de les còpies de seguretat.
 
+<img width="794" height="496" alt="image" src="https://github.com/user-attachments/assets/ae9526f5-6f0a-4e24-a504-279b7927a35f" />
 
+<img width="496" height="395" alt="image" src="https://github.com/user-attachments/assets/c42d1e86-a867-4a72-9c92-d39aa7d8968c" />
 
+## 3.2. Creació del directori de destí "CòpiesUsuaris"
 
+Dins de la nova unitat de salvaguarda (identificada normalment com a **E:**), cal procedir a la creació d'una carpeta específica anomenada `CòpiesUsuaris`. 
 
+Aquest directori actuarà com el repositori centralitzat on s'emmagatzemaran totes les rèpliques de dades generades pels processos d'automatització posteriors.
 
+<img width="550" height="102" alt="image" src="https://github.com/user-attachments/assets/52f59004-61fe-4351-88c5-701e6245e936" />
 
+## 3.3. Desenvolupament de l'script d'automatització (.bat)
+
+Amb l'objectiu de simplificar el procés de salvaguarda, cal programar un fitxer per lots que realitzi la transferència de dades de manera automàtica. L'script ha de seguir aquesta lògica:
+
+* **Origen:** El directori de l'usuari actual mitjançant la variable de sistema `%USERNAME%` (normalment situat a `C:\Users`).
+* **Destí:** La ruta específica de seguretat a la unitat de backups: `E:\CòpiesUsuaris\%USERNAME%`.
+
+El codi font ha d'utilitzar comandes de còpia (com `xcopy` o `robocopy`) per assegurar que el contingut de la sessió activa es replica correctament a la carpeta de destí assignada a cada alumne.
+
+xcopy "C:\Users\%USERNAME%" "E:\CòpiesUsuaris\%USERNAME%" /E /I /Y
+
+Això copia tot el perfil de l'usuari al disc de Backups, creant la subcarpeta si no existeix (/I), de forma recursiva (/E) i sobreescrivint (/Y).
+
+<img width="593" height="63" alt="image" src="https://github.com/user-attachments/assets/1fc5349e-6737-4292-98f0-0d6bd337c72a" />
 
 
 
