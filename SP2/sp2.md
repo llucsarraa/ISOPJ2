@@ -156,6 +156,83 @@ Això copia tot el perfil de l'usuari al disc de Backups, creant la subcarpeta s
 
 <img width="593" height="63" alt="image" src="https://github.com/user-attachments/assets/1fc5349e-6737-4292-98f0-0d6bd337c72a" />
 
+## 3.4. Implementació de la política de grup per a l'execució de l'script
+
+Per aconseguir que el fitxer de salvaguarda s'executi automàticament, cal configurar una directiva local mitjançant els següents passos:
+
+1.  **Accés a l'editor:** Executeu la consola de directives de grup local utilitzant la comanda `gpedit.msc`.
+2.  **Ruta de configuració:** Dins de l'arbre de navegació, cal desplaçar-se per la següent ruta:
+    * **Configuració de l'usuari**
+    * **Configuració de Windows**
+    * **Scripts (inici o tancament de sessió)**
+3.  **Selecció del disparador:** Feu doble clic sobre l'opció **"Inici de sessió"** per obrir la finestra on vincularem el nostre fitxer per lots.
+
+<img width="687" height="305" alt="image" src="https://github.com/user-attachments/assets/d3e3bf6a-e458-4cce-b90c-3759b3089699" />
+
+## 3.5. Vinculació i automatització del procés de backup
+
+L'últim pas per completar el flux de treball consisteix a assignar el fitxer executable perquè s'activi de forma autònoma. El procediment és el següent:
+
+* **Assignació de l'arxiu:** Mitjançant el botó **"Afegir"**, seleccionarem l'script `.bat` que hem desenvolupat prèviament.
+* **Funcionament operatiu:** Un cop configurat, el sistema dispararà el procés de duplicació cada vegada que l'usuari `alumne1` o `alumne2` accedeixi al seu perfil. 
+
+D'aquesta manera, ens assegurem que tota la informació personal es replica a la unitat **Backups** de manera transparent i sense intervenció manual en cada inici de sessió.
+
+<img width="492" height="456" alt="image" src="https://github.com/user-attachments/assets/e13d9e48-e8fb-4065-810e-eead478f4780" />
+
+<img width="388" height="332" alt="image" src="https://github.com/user-attachments/assets/da5752f5-6a43-4f3c-b81a-0f5ab5c34f86" />
+
+# Etapa 4: Validació final i control de qualitat
+
+## 4.1. Proves de funcionament integral del sistema
+
+Per donar per finalitzada la configuració, cal realitzar una bateria de tests des del perfil de l'usuari `alumne1`. Durant aquesta verificació, s'han de confirmar els següents punts clau:
+
+* **Execució de la salvaguarda:** Comprovar que, en entrar al sistema, l'script ha generat correctament el directori `alumne1` dins de la ruta `E:\CòpiesUsuaris`, confirmant la replicació de les dades.
+* **Eficàcia de les restriccions:** Validar que el límit d'emmagatzematge continua actiu a la unitat **D:** i que el sistema denega qualsevol intent de sobrepassar el llindar de **300 MB**.
+* **Integritat del conjunt:** Inspeccionar que tots els elements configurats (usuaris, grups, particions i automatismes) operen de manera sincronitzada i sense errors.
+
+Aquesta darrera inspecció garanteix que la infraestructura compleix amb tots els requisits d'administració i seguretat establerts.
+
+<img width="849" height="557" alt="image" src="https://github.com/user-attachments/assets/a8ce2b52-5d9b-4e18-9076-2c4d855b07bb" />
+
+# Etapa 5: Administració de serveis i activitat del sistema
+
+## 5.1. Inventari de l'activitat de l'usuari en temps real
+
+Per analitzar quines tasques s'estan executant en segon pla, procedirem a fer una captura de l'estat del sistema sota el perfil d'`alumne1`:
+
+1.  **Accés a la consola:** Un cop dins de la sessió de l'usuari, obrirem el terminal d'ordres (**CMD**).
+2.  **Consulta de processos:** Utilitzarem la comanda `tasklist` per visualitzar el llistat complet de programes en execució.
+3.  **Exportació de dades:** Per documentar l'estat inicial, bolcarem la informació generada en un fitxer de text mitjançant l'ordre:
+    `tasklist > C:\Users\%USERNAME%\processos_inici.txt`
+4.  **Anàlisi de resultats:** Identificarem elements essencials de l'entorn de Windows, com ara l'explorador de fitxers (`explorer.exe`), el servei d'indexació (`SearchIndexer.exe`) o el client d'emmagatzematge al núvol (`OneDrive.exe`).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
