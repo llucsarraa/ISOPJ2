@@ -345,8 +345,22 @@ Finalment, aplicarem els canvis per assegurar que aquestes regles es propaguin c
 
 <img width="596" height="125" alt="image" src="https://github.com/user-attachments/assets/7d6f6776-eb38-486d-81e6-4a51a979a724" />
 
+<img width="498" height="292" alt="image" src="https://github.com/user-attachments/assets/1a2ba8dc-d4e4-4087-8734-e28fbc07e857" />
 
+<img width="500" height="205" alt="image" src="https://github.com/user-attachments/assets/941c9099-1b5b-4e0d-9cb1-c5cddd23efea" />
 
+<img width="748" height="304" alt="image" src="https://github.com/user-attachments/assets/f99ed40a-8a03-4b15-bb54-d084696fbdd9" />
+
+### Pas 26. Validació dels privilegis heretats (Usuari: alumne1)
+
+Un cop establerta la política de grup, cal confirmar que els membres de **Limitats** gaudeixen dels permisos assignats de manera efectiva:
+
+* **Accés al perfil:** Iniciem la sessió de treball amb el compte de l'usuari `alumne1`.
+* **Proves d'operativitat:** Dins del directori `D:\Projectes`, realitzarem el cicle complet de gestió de fitxers:
+    1. **Creació:** Generar un nou document.
+    2. **Edició:** Modificar-ne el contingut i desar els canvis.
+    3. **Eliminació:** Suprimir el fitxer creat.
+* **Resultat esperat:** Totes les accions s'han de completar satisfactòriament, ja que l'usuari rep els permisos de **Control total** de forma indirecta a través de la seva pertinença al grup.
 
 
 
