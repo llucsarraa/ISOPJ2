@@ -362,6 +362,7 @@ Un cop establerta la política de grup, cal confirmar que els membres de **Limit
     3. **Eliminació:** Suprimir el fitxer creat.
 * **Resultat esperat:** Totes les accions s'han de completar satisfactòriament, ja que l'usuari rep els permisos de **Control total** de forma indirecta a través de la seva pertinença al grup.
 
+<img width="1024" height="594" alt="image" src="https://github.com/user-attachments/assets/ebc4875f-f5a4-4a22-a3c8-e354d4a147cf" />
 
 
 
