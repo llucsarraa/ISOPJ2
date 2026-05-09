@@ -3,11 +3,11 @@ layout: default
 title: "Sprint 3: Administració de Dominis i Seguretat"
 ---
 
-<img width="406" height="757" alt="2026-04-28_13-11" src="https://github.com/user-attachments/assets/6da24c0b-b66d-460c-962f-ca0fd333647d" />
+![alt text] <img width="406" height="757" alt="2026-04-28_13-11" src="https://github.com/user-attachments/assets/6da24c0b-b66d-460c-962f-ca0fd333647d" />
 
-<img width="486" height="318" alt="2026-04-28_13-13" src="https://github.com/user-attachments/assets/535aa3d4-6485-4c82-bbe6-a41a93fbcf86" />
+![alt text] <img width="486" height="318" alt="2026-04-28_13-13" src="https://github.com/user-attachments/assets/535aa3d4-6485-4c82-bbe6-a41a93fbcf86" />
 
-<img width="786" height="561" alt="2026-04-28_13-15" src="https://github.com/user-attachments/assets/f7eeb730-cb96-498f-80be-3fd7f436df82" />
+![alt text] <img width="786" height="561" alt="2026-04-28_13-15" src="https://github.com/user-attachments/assets/f7eeb730-cb96-498f-80be-3fd7f436df82" />
 
 <img width="638" height="428" alt="image" src="https://github.com/user-attachments/assets/a19a978e-2ae9-40be-b26d-ae91ff11d05d" />
 
