@@ -364,6 +364,68 @@ Un cop establerta la política de grup, cal confirmar que els membres de **Limit
 
 <img width="1024" height="594" alt="image" src="https://github.com/user-attachments/assets/ebc4875f-f5a4-4a22-a3c8-e354d4a147cf" />
 
+<img width="1024" height="268" alt="image" src="https://github.com/user-attachments/assets/99446eb1-9b33-42be-aced-9a404262ac11" />
+
+### Pas 27. Aplicació d'una restricció específica per a l'usuari "alumne2"
+
+Per tal de demostrar la capacitat de superposar permisos individuals sobre els de grup (granularitat), procedirem a limitar l'accés d'un dels membres de manera excepcional:
+
+1.  **Privilegis de gestió:** Accedim de nou al sistema amb el compte d'**Administrador**.
+2.  **Modificació via terminal:** Obrim la consola d'ordres (CMD) i executem la següent instrucció tècnica:
+    `icacls "D:\Projectes" /grant:r alumne2:(R)`
+
+**Anàlisi de la comanda:**
+* **`/grant:r`**: Aquest paràmetre és clau, ja que **substitueix** els permisos que l'`alumne2` pogués heretar del grup per una nova entrada explícita.
+* **`(R)`**: Defineix que, a partir d'ara, l'usuari només disposarà de permisos de **Lectura** (*Read*) sobre aquest directori, malgrat que la resta del seu grup tingui control total.
+
+<img width="650" height="67" alt="image" src="https://github.com/user-attachments/assets/8341d941-5062-4b7e-aa41-7f82c518e494" />
+
+### Pas 28. Verificació de la restricció individual (Usuari: alumne2)
+
+Per finalitzar la prova de seguretat, validarem que el permís explícit de lectura s'ha imposat correctament sobre els privilegis del grup:
+
+* **Accés al perfil:** Iniciem sessió amb el compte de l'usuari `alumne2`.
+* **Proves de lectura:** Accedim a la carpeta `D:\Projectes` i intentem obrir qualsevol document existent. El sistema ha de permetre la visualització del contingut sense problemes.
+* **Proves d'escriptura:** Intentarem realitzar accions de modificació:
+    1.  **Creació:** Intentar generar un nou fitxer o carpeta.
+    2.  **Edició:** Intentar desar canvis en un document existent.
+* **Resultat esperat:** En ambdós casos d'escriptura, Windows ha de mostrar un missatge d'**Accés denegat**. 
+
+Aquesta prova confirma que una entrada de permís específica (`ACE`) per a un usuari té prioritat sobre els permisos heretats de la seva agrupació, complint així l'objectiu de la pràctica.
+
+<img width="1024" height="308" alt="image" src="https://github.com/user-attachments/assets/196ebb18-ca1a-44ff-9beb-edbc00218e94" />
+
+### Pas 29. Auditoria final de les ACL mitjançant la consola
+
+Per corroborar que l'estructura de seguretat s'ha consolidat correctament, realitzarem una consulta tècnica de les llistes de control d'accés (ACL) des del terminal:
+
+1. **Consulta d'estat:** Des d'una consola amb privilegis d'administrador, executarem l'ordre:
+   `icacls "D:\Projectes"`
+
+2. **Interpretació de la sortida:** El sistema retornarà un resum de les entrades de control d'accés (ACE). Un resultat correcte mostrarà una jerarquia similar a aquesta:
+   * `Limitats:(OI)(CI)(F)`
+   * `alumne2:(R)`
+
+#### Glossari de la nomenclatura de permisos:
+Per entendre el comportament de la carpeta, cal desglossar les sigles que utilitza Windows:
+
+| Sigla | Nom tècnic | Significat funcional |
+| :--- | :--- | :--- |
+| **(OI)** | *Object Inherit* | Els fitxers creats dins de la carpeta heretaran automàticament aquests permisos. |
+| **(CI)** | *Container Inherit* | Les subcarpetes que es generin adoptaran la mateixa política de seguretat. |
+| **(F)** | *Full Control* | Atorga privilegis totals de gestió (Control total). |
+| **(R)** | *Read* | Restringeix l'activitat de l'usuari exclusivament a la consulta (Només lectura). |
+
+Aquesta verificació final ens permet certificar que la configuració és robusta i que l'herència està correctament definida per als futurs fitxers del projecte.
+
+<img width="640" height="242" alt="image" src="https://github.com/user-attachments/assets/521692ef-14d7-4426-9cdc-9d02c9c008c7" />
+
+
+
+
+
+
+
 
 
 
